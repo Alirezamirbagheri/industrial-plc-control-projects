@@ -75,9 +75,9 @@ This avoids transferring or storing the complete dense trajectory as a point lis
 
 ## Representative output
 
-![Trajectory smoothing comparison](../assets/trajectory_smoothing_comparison.png)
+![Trajectory smoothing comparison](../assets/trajectory_smoothing_comparison.svg)
 
-Representative offline results: **black = original sampled trajectory, red = smoothed trajectory**. The figure shows several trajectory examples/parameter cases and illustrates how the smoothed path follows the original geometry while removing small irregularities and reducing the representation to spline segments.
+Representative offline result for three movers: **black dashed = original sampled trajectory, red = smoothed spline**. The compact visual is generated from one reviewed sample trajectory and illustrates how the spline follows the intended geometry while filtering small irregularities.
 
 ## Source
 
