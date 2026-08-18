@@ -28,11 +28,11 @@ See [`tia-portal/robot-cell-profinet-integration/README.md`](tia-portal/robot-ce
 
 ### 3. Beckhoff TwinCAT — Offline Spline External Setpoint Generation
 
-Offline trajectory-execution project in which parametric spline coefficients are generated externally and imported into TwinCAT. The PLC evaluates the spline cyclically, reconstructs the next trajectory point and drives XPlanar movers through an external-setpoint-generation concept.
+Offline motion pipeline that converts dense multi-mover simulation trajectories into compact parametric splines before deterministic TwinCAT execution. Python performs point reduction, arc-length resampling, deviation-bounded cubic smoothing and motion-aware segment weighting; TwinCAT imports the resulting CSV and generates the next X/Y setpoint cyclically for XPlanar execution.
 
-**Portfolio focus:** spline import/evaluation, cyclic point generation, timing allocation, mover execution and deterministic motion logic.
+**Portfolio focus:** numerical trajectory preprocessing, RDP reduction, cubic B-spline fitting, spline coefficient export, motion/time weighting, CSV handover, cyclic point generation and external setpoint execution.
 
-Includes a sanitized architecture document and Structured Text source excerpt.
+Includes the sanitized/refactored Python preprocessing source, a representative smoothing comparison, architecture/selected-logic documentation and a Structured Text execution excerpt.
 
 See [`twincat/offline-spline-external-setpoint/README.md`](twincat/offline-spline-external-setpoint/README.md).
 
@@ -54,6 +54,7 @@ See [`twincat/online-python-vision-motion-planning/README.md`](twincat/online-py
 - sensor-driven process control and diagnostics
 - PID-related pneumatic pressure control
 - robot and gripper integration
+- offline trajectory reduction, smoothing and parametric spline generation
 - cyclic setpoint generation and XPlanar motion execution
 - Python–PLC integration and online planning
 - fault handling, synchronization and runtime supervision
@@ -62,12 +63,12 @@ See [`twincat/online-python-vision-motion-planning/README.md`](twincat/online-py
 
 - **TIA pneumatic control:** reviewed; architecture and sanitized selected logic prepared
 - **TIA robot cell:** reviewed; architecture and sanitized selected integration logic prepared
-- **TwinCAT offline:** reviewed; sanitized architecture/source excerpt prepared
+- **TwinCAT offline:** reviewed; Python preprocessing, architecture, visual example and sanitized PLC execution excerpt prepared
 - **TwinCAT online:** reviewed; sanitized architecture/source excerpts prepared
 
 The HMI implementations are part of the original systems but are intentionally not a main portfolio artifact. The public presentation focuses on control logic and system integration.
 
-The native engineering archives are **not** published. The review identified vendor packages, compiled libraries, license files, project databases, target-system/network configuration, raw logs and other generated artifacts that should remain outside a public portfolio.
+The native engineering archives are **not** published. The review identified vendor packages, compiled libraries, license files, project databases, target-system/network configuration, raw logs, local Python environments and other generated artifacts that should remain outside a public portfolio.
 
 ## Repository layout
 
@@ -83,9 +84,13 @@ tia-portal/
 twincat/
   offline-spline-external-setpoint/
     ARCHITECTURE.md
+    SELECTED_LOGIC.md
+    assets/
+    python-preprocessing/
     source-excerpts/
   online-python-vision-motion-planning/
     ARCHITECTURE.md
+    SELECTED_LOGIC.md
     source-excerpts/
 
 PUBLIC_RELEASE_CHECKLIST.md
