@@ -33,6 +33,12 @@ See [`robot-cell-profinet-integration/README.md`](robot-cell-profinet-integratio
 
 ## Publication scope
 
-The original TIA Portal archives are not suitable for direct publication. They contain vendor GSD/GSDML material, internal project databases, generated HMI runtime artifacts, logs and machine/network configuration. Public content should therefore be limited to sanitized engineering documentation, selected author-created PLC logic/exports, and safe diagrams or screenshots.
+The original TIA Portal archives are not suitable for direct publication. The review found vendor GSD/GSDML material, internal project databases, generated HMI runtime artifacts, logs and environment-specific metadata. One archive also contains a development-log reference to an external Windows path. These items are unnecessary for a portfolio and remain excluded.
 
-> Status: **source archives reviewed; public extraction still intentionally conservative**.
+## Remaining source step
+
+The case-study documentation is ready, but meaningful PLC source still needs to be exported from TIA Portal in a reviewable form. Export only selected blocks that were authored for the projects; do not upload the native project archives.
+
+See [`EXPORT_SELECTED_BLOCKS.md`](EXPORT_SELECTED_BLOCKS.md) for the exact export checklist.
+
+> Status: **archives reviewed; documentation prepared; selected PLC block export still required**.
