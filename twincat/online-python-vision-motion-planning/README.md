@@ -6,7 +6,7 @@ Connect camera-based perception and Python motion planning to deterministic PLC-
 
 ## Reviewed implementation
 
-The final project extends the earlier motion-control foundation with a dedicated Python/TwinCAT runtime interface. The reviewed PLC logic includes:
+The final project extends the motion-control foundation with a dedicated Python/TwinCAT runtime interface. The reviewed PLC logic includes:
 
 - command/status structures exchanged with Python
 - sequence-ID-based global-plan acceptance
@@ -42,13 +42,20 @@ XPlanar movers
 PLC status / acknowledgements / trace data
 ```
 
+## Portfolio material
+
+- [`ARCHITECTURE.md`](ARCHITECTURE.md) — Python/PLC responsibility split and data flow
+- [`source-excerpts/global_plan_handshake.st`](source-excerpts/global_plan_handshake.st) — sequence-numbered global-plan acceptance
+- [`source-excerpts/local_override_priority.st`](source-excerpts/local_override_priority.st) — simplified per-mover local-override priority logic
+- [`source-excerpts/README.md`](source-excerpts/README.md) — source-excerpt scope and limitations
+
 ## Global-plan execution
 
-Python provides a versioned global plan buffer containing mover IDs, waypoints, timing and motion information. The PLC consumes only a fresh sequence, copies it into an active execution buffer and acknowledges the accepted plan before coordinated motion begins.
+Python provides a versioned global plan buffer containing mover IDs and waypoint data. The PLC consumes only a fresh sequence, copies it into an active execution buffer and acknowledges the accepted plan before coordinated motion begins.
 
 ## Local online correction
 
-Local corrective commands are handled separately from the global plan. The reviewed implementation keeps per-mover pending/execution state and gives an accepted local override priority at a safe transition between motion commands, after which global execution can continue.
+Local corrective commands are handled separately from the global plan. The reviewed implementation keeps per-mover pending/execution state and gives an accepted local override priority before global execution for that mover continues.
 
 ## PLC/Python state machine
 
@@ -60,10 +67,10 @@ This case study demonstrates the integration layer between non-deterministic AI/
 
 ## Relationship to the wire-harness project
 
-This is the PLC execution architecture used in the final Version 3 wire-harness system. The public system-level overview is maintained separately in `wire-harness-ai-motion-planning`.
+This is the PLC execution architecture used in the final Version 3 wire-harness system. The system-level public overview is maintained separately in `wire-harness-ai-motion-planning`.
 
 ## Public-release scope
 
-The native TwinCAT workspace includes Beckhoff/third-party compiled libraries, TwinSAFE configuration, license material, build outputs and machine-specific configuration. Those remain excluded. Selected author-created ST modules may be published later after ownership and redistribution review.
+The native TwinCAT workspace includes Beckhoff/third-party compiled libraries, TwinSAFE configuration, license material, build outputs and machine-specific configuration. Those remain excluded. The source excerpts published here are intentionally simplified, author-focused architecture examples and are not a standalone TwinCAT project.
 
-> Status: **final source archive reviewed; documentation ready; public source extraction intentionally pending**.
+> Status: **final archive reviewed; sanitized architecture and source excerpts prepared**.
