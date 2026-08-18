@@ -26,7 +26,9 @@ See [`tia-portal/robot-cell-profinet-integration/README.md`](tia-portal/robot-ce
 
 Offline trajectory-execution project in which parametric spline coefficients are generated externally and imported into TwinCAT. The PLC evaluates the spline cyclically, reconstructs the next trajectory point and drives XPlanar movers through an external-setpoint-generation concept.
 
-**Portfolio focus:** spline import/evaluation, cyclic point generation, timing allocation, mover initialization/distribution and external setpoint motion execution.
+**Portfolio focus:** spline import/evaluation, cyclic point generation, timing allocation, mover execution and deterministic motion logic.
+
+This case study now includes a sanitized architecture document and a Structured Text source excerpt.
 
 See [`twincat/offline-spline-external-setpoint/README.md`](twincat/offline-spline-external-setpoint/README.md).
 
@@ -35,6 +37,8 @@ See [`twincat/offline-spline-external-setpoint/README.md`](twincat/offline-splin
 Closed-loop automation project coupling TwinCAT with Python-based perception and online motion planning. Python produces global motion plans and local overrides from camera/perception data; TwinCAT manages command/acknowledgement handshakes, synchronized execution, mover state and PLC-side runtime supervision.
 
 **Portfolio focus:** Python–PLC coupling, online global plans, local override priority, state-machine coordination, synchronized multi-mover execution and motion tracing.
+
+This case study now includes a sanitized architecture document and Structured Text excerpts for the global-plan handshake and local-override priority logic.
 
 See [`twincat/online-python-vision-motion-planning/README.md`](twincat/online-python-vision-motion-planning/README.md).
 
@@ -49,22 +53,31 @@ See [`twincat/online-python-vision-motion-planning/README.md`](twincat/online-py
 - Python–PLC integration and online planning
 - fault handling, synchronization, diagnostics and HMI design
 
-## Public-release approach
+## Current publication status
 
-The native engineering archives are **not** published. The review identified vendor packages, compiled libraries, license files, project databases, machine/network configuration, raw logs and other generated artifacts that should remain outside a public portfolio.
+- **TwinCAT offline:** reviewed and sanitized architecture/source excerpt prepared
+- **TwinCAT online:** reviewed and sanitized architecture/source excerpts prepared
+- **TIA pneumatic control:** documentation prepared; selected PLC block export still required
+- **TIA robot cell:** documentation prepared; selected PLC block export still required
 
-The public version will contain only sanitized documentation, selected author-created logic where redistribution is appropriate, and diagrams/screenshots that do not reveal restricted information.
+The native engineering archives are **not** published. The review identified vendor packages, compiled libraries, license files, project databases, target-system/network configuration, raw logs and other generated artifacts that should remain outside a public portfolio.
 
 ## Repository layout
 
 ```text
 tia-portal/
+  README.md
+  EXPORT_SELECTED_BLOCKS.md
   pneumatic-flow-pressure-control/
   robot-cell-profinet-integration/
 
 twincat/
   offline-spline-external-setpoint/
+    ARCHITECTURE.md
+    source-excerpts/
   online-python-vision-motion-planning/
+    ARCHITECTURE.md
+    source-excerpts/
 
 PUBLIC_RELEASE_CHECKLIST.md
 REVIEW_STATUS.md
