@@ -1,40 +1,39 @@
-# Export Selected PLC Blocks from TIA Portal
+# Optional Future TIA Source Export
 
-The native TIA Portal archives should remain private. For the public portfolio, export only selected PLC blocks that you authored and that do not contain restricted customer, university, vendor or machine-specific information.
+The initial portfolio version **does not require any additional TIA Portal export**. The reviewed reports were sufficient to prepare the architecture and sanitized logic representations for both Siemens case studies.
 
-## Pneumatic Flow & Pressure Control
+If a future version should include exact PLC source/XML rather than sanitized portfolio excerpts, export only blocks that are clearly author-created and redistributable.
 
-Export the blocks that best demonstrate:
+## Suitable future candidates
 
-- pressure / flow scaling and signal handling
-- IO-Link process-data mapping
-- PID control or setpoint handling
-- operating sequence / state logic
-- HMI command and diagnostic interface
+### Pneumatic Flow & Pressure Control
 
-Preferred formats: **External source / SCL** for SCL blocks, or **XML export** for LAD/FBD blocks.
+- state-machine logic
+- sensor-array mapping
+- sensor fault-detection logic
+- WFE position tracking
+- pressure/setpoint control logic
 
-## Robot Cell & Gripper Integration
+### Robot Cell & Gripper Integration
 
-Export the blocks that best demonstrate:
+- project-specific robot/equipment mapping
+- solenoid-valve state handling
+- project-specific gripper mapping and operation handling
+- system fault aggregation
 
-- robot command/status handshake
-- gripper command/status logic
-- operating sequence / state machine
-- device-ready / fault interlocks
-- HMI command/status interface
+## Preferred formats
 
-Preferred formats: **External source / SCL** for SCL blocks, or **XML export** for LAD/FBD blocks.
+- **External source / SCL** for SCL blocks
+- **XML export** for LAD/FBD blocks when available through the engineering workflow
 
-## Before exporting
+## Never include
 
-Do not include:
-
-- full native `.ap19` / `.zap19` project archives
+- full native `.ap19` / `.zap19` archives
 - GSD/GSDML device packages
 - passwords, certificates or access-control data
-- real IP addresses / device names if they identify the actual lab network
+- real IP addresses or identifying device/network names
 - logs or generated HMI runtime files
-- blocks copied from vendor libraries or course templates unless redistribution is clearly permitted
+- Siemens, SCHUNK, Zimmer or other vendor-owned library implementations
+- restricted course/university material
 
-After the exports are added to the private staging repository, they can be reviewed and sanitized before the repository is made public.
+> Status: **optional future enhancement — no action required for the current portfolio release**.
