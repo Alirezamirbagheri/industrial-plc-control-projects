@@ -3,6 +3,7 @@
 Thumbs.db
 .idea/
 .vscode/
+.vs/
 
 # Secrets / local configuration
 .env
@@ -17,29 +18,66 @@ Thumbs.db
 
 # Logs / generated artifacts
 *.log
+Logs/
 logs/
 outputs/
 Results/
+IM/
+AdditionalFiles/
 
-# Siemens / TwinCAT generated or machine-specific artifacts
+# Siemens TIA Portal native archives / generated data
+*.ap*
+*.zap*
+*.pma*
+*.rtid
+*.fwc
+*.pwx
+*.tfz
+*.gdbak
+*.gd
+
+# Vendor device packages should not be copied into the portfolio
+GSD/
+GSDML/
+*gsdml*.xml
+
+# TwinCAT native project / machine-specific files
+*.tsproj
+*.tsproj.bak
+*.tsproj.user
+*.plcproj
+*.sln
+*.sln.user
+*.tpy
+*.tmc
+*.TcTTO
+*.bootdata
+*.tclrs
+__Boot/
+__Config/
+_Boot/
+_TwinCAT Boot/
+_Libraries/
+
+# TwinSAFE / target configuration stays private
+SafetyXPlanar/
+*.splcproj
+*.sds
+*.sal
+*.sal.diagram
+TargetSystemConfig.xml
+
+# Compiled/vendor libraries
+*.compiled-library
+*.compiled-library-*
+*.library
+
+# Generic temporary / backup artifacts
 *.bak
 *.tmp
 *.cache
-*.compiled-library
-*.library
-*.tpy
-*.tmc
-*.bootdata
-_Boot/
-_TwinCAT Boot/
 
 # License / activation material
 *license*
 *License*
 *TAN*
-
-# Native project archives stay private until reviewed
-*.ap*
-*.zap*
-*.tsproj.user
-*.sln.user
