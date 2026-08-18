@@ -2,6 +2,11 @@
     Portfolio excerpt: cyclic spline point generation
     Derived from the reviewed TwinCAT implementation.
     Not a complete standalone program.
+
+    SegmentWeight represents the normalized per-segment motion allocation
+    imported with the offline Python-generated spline data. TotalMotionTime_s
+    is selected for the complete mover trajectory and CycleTime_s is the PLC
+    point-generation cycle.
 *)
 
 (* Allocate cyclic interpolation points for the active segment. *)
