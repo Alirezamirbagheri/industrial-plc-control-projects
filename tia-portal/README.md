@@ -1,22 +1,38 @@
-# Siemens TIA Portal Project
+# Siemens TIA Portal Case Studies
 
-This section is reserved for a sanitized portfolio presentation of a Siemens TIA Portal automation project.
+The reviewed Siemens material contains two distinct automation projects and is therefore presented as two separate case studies inside this repository.
 
-## Intended public content
+## 1. Pneumatic Flow & Pressure Control
 
-The final public version should document the engineering contribution without exposing restricted native project material. Suitable items include:
+A PLC/HMI project centered on pneumatic process control and measurement. The reviewed project shows:
 
-- problem statement and automation objective
-- PLC architecture and sequence overview
-- selected SCL/LAD/FBD logic authored for the project
-- I/O and communication concept
-- Profinet / device integration overview where relevant
-- HMI / diagnostics concept with sanitized screenshots
-- test or commissioning approach
-- lessons learned and engineering trade-offs
+- ET 200SP distributed I/O
+- Siemens CM 4xIO-Link integration
+- Festo VPPM proportional-pressure devices
+- pressure and flow signals
+- PID_Compact-based regulation
+- WinCC Runtime Advanced / HMI engineering
+- alarm, logging and diagnostic concepts
 
-## Before publication
+See [`pneumatic-flow-pressure-control/README.md`](pneumatic-flow-pressure-control/README.md).
 
-The native TIA Portal archive should be reviewed before any part of it is copied here. Vendor libraries, device packages, license-related content, private network details and third-party intellectual property should not be published unless redistribution rights are clear.
+## 2. Robot Cell & Gripper Integration
 
-> Status: **private staging area — content review pending**.
+A larger multi-device automation project. The reviewed project shows:
+
+- Siemens S7-1500-class control, including a CPU 1517TF-3 PN/DP project configuration
+- ET 200SP distributed I/O
+- FANUC robot interfaces
+- SCHUNK EGK-series gripper integration
+- Festo CPX / pneumatic valve hardware
+- PROFINET and PROFIsafe device communication
+- Siemens TP1500 Comfort PRO HMI
+- operation selection, handshakes, safety/status handling and diagnostics
+
+See [`robot-cell-profinet-integration/README.md`](robot-cell-profinet-integration/README.md).
+
+## Publication scope
+
+The original TIA Portal archives are not suitable for direct publication. They contain vendor GSD/GSDML material, internal project databases, generated HMI runtime artifacts, logs and machine/network configuration. Public content should therefore be limited to sanitized engineering documentation, selected author-created PLC logic/exports, and safe diagrams or screenshots.
+
+> Status: **source archives reviewed; public extraction still intentionally conservative**.
