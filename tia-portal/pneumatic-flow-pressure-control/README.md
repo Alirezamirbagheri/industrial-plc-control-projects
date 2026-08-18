@@ -15,28 +15,26 @@ Industrial PLC control project for pneumatic pressure and flow handling using Si
 - supporting WinCC Runtime Advanced HMI for setup and monitoring
 - alarm, data-logging and diagnostic functionality
 
-## Engineering contribution to showcase
+## Engineering contribution
 
-The portfolio version focuses on the PLC/control architecture rather than the native TIA archive or full HMI implementation:
+The portfolio presentation focuses on the PLC/control architecture rather than the native TIA archive:
 
-1. Acquire and scale pressure/flow measurements.
-2. Map IO-Link and analogue process data into PLC structures.
-3. Generate pressure/flow setpoints from the operating sequence.
-4. Regulate the pneumatic process using PID-based logic.
-5. Command proportional valves and supporting pneumatic actuators.
-6. Supervise experiment state, sensor status, faults and control parameters.
+1. Map physical sensor channels into reusable PLC data structures.
+2. Detect inconsistent sensor patterns and generate fault information.
+3. Track wire/process position using selected sensors, target/tolerance logic and stability timing.
+4. Coordinate experiment phases through a top-level state machine with stop/restart handling.
+5. Generate and adapt pneumatic pressure commands using sensor feedback and timed pressure steps.
+6. Keep diagnostics and operator interaction separate from the core control logic.
 
-## Recommended public artifacts
+## Portfolio material
 
-- simplified control architecture diagram
-- selected SCL/LAD/FBD exports authored for the project
-- sanitized PID-control overview
-- IO-Link data-flow diagram
+- [`ARCHITECTURE.md`](ARCHITECTURE.md) — control decomposition and data flow
+- [`SELECTED_LOGIC.md`](SELECTED_LOGIC.md) — sanitized representations of the strongest PLC logic
 
-The HMI is part of the implemented system but is intentionally not a main portfolio artifact. If a visual is later useful, only a cropped and sanitized **Wire Floating Experiment (3_WFE)** screen should be considered.
+The HMI is part of the implemented system but is intentionally **not** used as a main portfolio artifact. The reviewed `3_WFE` screen is retained only as optional internal reference; the public presentation remains focused on PLC engineering.
 
-## Excluded from public release
+## Public-release boundary
 
-The native archive contains generated HMI runtime content, project databases, logs, vendor/device configuration and machine-specific details. Those are intentionally not copied into the public portfolio.
+The native archive contains generated HMI runtime content, project databases, logs, vendor/device configuration and machine-specific details. Siemens/vendor library implementations and raw project files are not copied into the portfolio.
 
-> Publication status: **documentation prepared; selected PLC logic / report material under review**.
+> Publication status: **source report reviewed; architecture and selected sanitized logic prepared**.
