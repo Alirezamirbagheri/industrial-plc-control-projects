@@ -1,40 +1,29 @@
-# Beckhoff TwinCAT Projects
+# Beckhoff TwinCAT Case Studies
 
-This section contains two distinct TwinCAT case studies with different control architectures.
+The reviewed TwinCAT material is best represented as **two distinct projects**, even though the later project builds on parts of the earlier XPlanar control foundation.
 
 ## 1. Offline Spline External Setpoint Generation
 
-An offline trajectory-execution concept in which spline parameters are prepared outside the PLC and imported into TwinCAT. During runtime, the PLC evaluates the trajectory cyclically and generates the next motion setpoint on every control cycle through an external-setpoint-generation approach.
+Trajectory geometry is generated offline, stored as parametric spline coefficients and imported into TwinCAT. The PLC evaluates the active spline segment cyclically and produces the next X/Y setpoint every task cycle for external-setpoint motion execution.
 
-Portfolio focus:
-
-- spline-parameter import
-- cyclic trajectory evaluation
-- point-by-point setpoint generation
-- external setpoint generation
-- mover/path execution
-- PLC-side timing and motion logic
+Reviewed concepts include CSV spline import, segment timing, cyclic spline evaluation, mover initialization/distribution and XPlanar motion execution.
 
 See [`offline-spline-external-setpoint/README.md`](offline-spline-external-setpoint/README.md).
 
 ## 2. Online Python/Vision Motion Planning
 
-A closed-loop automation concept in which TwinCAT is coupled with Python. Camera-based perception and online motion planning run on the Python side, while the PLC manages synchronized machine execution, handshakes, state transitions and motion commands.
+The later project adds a dedicated Python/TwinCAT integration layer for camera-based perception and online planning. Python supplies global plan buffers and local corrections; TwinCAT supervises plan acceptance, synchronization, global execution, local-override priority and runtime state.
 
-Portfolio focus:
-
-- Python–TwinCAT communication
-- camera/perception integration
-- online path and motion generation
-- synchronized multi-mover execution
-- runtime state-machine logic
-- command/acknowledgement handshakes
-- fault and execution supervision
+Reviewed concepts include Python command/status structures, sequence IDs, waypoint buffers, a PLC/Python state machine, global and local executors, active-mover mapping and motion tracing.
 
 See [`online-python-vision-motion-planning/README.md`](online-python-vision-motion-planning/README.md).
 
+## Why they are presented separately
+
+The first case study demonstrates **deterministic PLC-side reconstruction of an offline mathematical trajectory**. The second demonstrates **closed-loop online coordination between AI/vision software and industrial motion control**. Those are sufficiently different engineering architectures to justify two portfolio case studies.
+
 ## Publication scope
 
-Only sanitized, author-created engineering content should be published. Native TwinCAT workspaces, Beckhoff/third-party libraries, compiled libraries, license or activation material, certificates, real AMS Net IDs, IP addresses and machine-specific configuration remain excluded unless redistribution rights are explicit.
+The native TwinCAT archives contain many items that should not be transferred into a public GitHub repository: compiled/vendor libraries, TwinSAFE material, license/activation files, build artifacts, backup/configuration files and machine-specific data. Public release should consist only of sanitized documentation and selected author-created ST logic after redistribution rights are confirmed.
 
-> Status: **private staging area — source review pending**.
+> Status: **both source archives reviewed; portfolio documentation prepared**.
