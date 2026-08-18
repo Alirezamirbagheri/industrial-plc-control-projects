@@ -54,9 +54,9 @@ See [`python-preprocessing/`](python-preprocessing/) for the sanitized/refactore
 
 ## Representative smoothing output
 
-![Trajectory smoothing comparison](assets/trajectory_smoothing_comparison.png)
+![Trajectory smoothing comparison](assets/trajectory_smoothing_comparison.svg)
 
-Black shows original sampled trajectories and red shows the smoothed trajectories. The examples demonstrate that the optimized spline path follows the intended geometry while filtering small irregularities before PLC execution.
+Black dashed paths/markers show original sampled trajectories and red paths show the smoothed spline result for three representative movers from one offline trajectory sample. The visual demonstrates how the fitted path retains the intended geometry while filtering small irregularities before PLC execution.
 
 ## TwinCAT execution
 
