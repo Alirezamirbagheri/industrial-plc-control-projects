@@ -2,7 +2,7 @@
 
 ## Objective
 
-Multi-device industrial automation project integrating PLC, robot, gripper, pneumatic and HMI subsystems into one coordinated cell.
+Multi-device industrial automation project integrating PLC, robot, gripper and pneumatic subsystems into one coordinated cell.
 
 ## Reviewed system elements
 
@@ -13,29 +13,28 @@ Multi-device industrial automation project integrating PLC, robot, gripper, pneu
 - Festo CPX / MPA pneumatic valve hardware
 - PROFINET device communication
 - PROFIsafe-related robot/safety communication in the project configuration
-- Siemens TP1500 Comfort PRO HMI
+- supporting Siemens HMI infrastructure
 
-## Engineering contribution to showcase
+## Engineering contribution
 
-The portfolio version should emphasize system integration and PLC-side coordination:
+The portfolio presentation emphasizes the project-specific integration layer:
 
-1. Coordinate robot-ready, command, busy, complete and fault states through PLC handshakes.
-2. Control gripper operating modes, position/force parameters and command acknowledgement.
-3. Integrate pneumatic valve and distributed-I/O states into the machine sequence.
-4. Manage operation selection and interlocks in the PLC.
-5. Present machine status, device diagnostics and operator commands through the HMI.
-6. Handle communication/device faults without coupling the public portfolio to the original plant network.
+1. Translate robot interface signals into PLC-side equipment commands rather than direct physical outputs.
+2. Represent pneumatic valves through a common open/closed/neutral/fault equipment state.
+3. Map raw gripper process data into typed application structures.
+4. Combine selected operation parameters with higher-level gripper commands for positioning and gripping.
+5. Separate vendor communication blocks from application-specific sequencing and command handling.
+6. Aggregate individual equipment faults into a system-level diagnostic state.
 
-## Recommended public artifacts
+## Portfolio material
 
-- cell architecture / communication diagram
-- sanitized sequence or state-machine diagram
-- selected PLC handshake logic authored for the project
-- gripper command/status mapping example with addresses removed
-- sanitized HMI overview
+- [`ARCHITECTURE.md`](ARCHITECTURE.md) — robot/gripper/pneumatic integration architecture
+- [`SELECTED_LOGIC.md`](SELECTED_LOGIC.md) — sanitized representations of project-specific mapping, command and diagnostic logic
 
-## Excluded from public release
+The HMI exists in the original engineering project but is not used as a primary public artifact; the portfolio focuses on PLC integration and device coordination.
 
-The reviewed archive contains vendor GSD/GSDML packages, generated HMI/runtime files, device configuration, diagnostics/logs and network-specific data. Those remain outside the public repository.
+## Vendor-code boundary
 
-> Publication status: **documentation prepared; source-code extraction pending ownership/redistribution review**.
+The reviewed archive includes vendor GSD/GSDML packages and vendor-supplied SCHUNK/Zimmer/Siemens blocks. Those implementations, native project databases, generated runtime files, device configuration, logs and network-specific data remain excluded.
+
+> Publication status: **source report reviewed; architecture and selected sanitized integration logic prepared**.
