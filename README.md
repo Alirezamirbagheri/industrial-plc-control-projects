@@ -2,23 +2,27 @@
 
 Portfolio repository for selected industrial-automation work using **Siemens TIA Portal** and **Beckhoff TwinCAT 3**.
 
-The source archives have been reviewed and are represented here as **four separate engineering case studies**: two Siemens PLC projects and two Beckhoff TwinCAT projects. Native vendor projects, proprietary libraries, license material, machine-specific configuration, raw logs and restricted assets remain excluded.
+The reviewed source material is represented as **four separate engineering case studies**: two Siemens PLC projects and two Beckhoff TwinCAT projects. Native vendor projects, proprietary libraries, license material, machine-specific configuration, raw logs and restricted assets remain excluded.
 
 ## Case studies
 
 ### 1. Siemens TIA Portal — Pneumatic Flow & Pressure Control
 
-PLC/HMI project for pneumatic process control using distributed I/O, IO-Link devices and PID-based regulation. The reviewed project includes ET 200SP I/O, a Siemens IO-Link master, Festo proportional-pressure hardware, PID_Compact logic and WinCC HMI functionality.
+PLC control project for pneumatic process handling using distributed I/O, IO-Link devices, sensor-based experiment logic and PID-related pressure regulation.
 
-**Portfolio focus:** PID control, pressure/flow handling, IO-Link integration, distributed I/O, alarms/diagnostics and HMI engineering.
+**Portfolio focus:** state-machine sequencing, sensor-array abstraction, pattern-based sensor diagnostics, position tracking with tolerance/stability logic, pressure control and IO-Link-oriented automation.
+
+Includes a sanitized architecture document and selected PLC-logic representations.
 
 See [`tia-portal/pneumatic-flow-pressure-control/README.md`](tia-portal/pneumatic-flow-pressure-control/README.md).
 
 ### 2. Siemens TIA Portal — Robot Cell & Gripper Integration
 
-Multi-device automation project integrating Siemens PLC control with robot, gripper, pneumatic and HMI subsystems over industrial Ethernet. The reviewed project contains FANUC robot interfaces, a SCHUNK gripper, Festo pneumatic/valve hardware, ET 200SP, PROFINET/PROFIsafe and a Siemens comfort-panel HMI.
+Multi-device automation project integrating Siemens PLC control with FANUC robot interfaces, a SCHUNK gripper, pneumatic equipment and distributed I/O.
 
-**Portfolio focus:** multi-device integration, robot handshakes, gripper control, distributed I/O, PROFINET/PROFIsafe, sequencing and HMI diagnostics.
+**Portfolio focus:** robot/equipment coordination, typed gripper command/status mapping, parameterized operations, pneumatic valve state handling, PROFINET/PROFIsafe integration context and system diagnostics.
+
+Includes a sanitized architecture document and selected integration-logic representations. Vendor-owned blocks are intentionally excluded.
 
 See [`tia-portal/robot-cell-profinet-integration/README.md`](tia-portal/robot-cell-profinet-integration/README.md).
 
@@ -28,7 +32,7 @@ Offline trajectory-execution project in which parametric spline coefficients are
 
 **Portfolio focus:** spline import/evaluation, cyclic point generation, timing allocation, mover execution and deterministic motion logic.
 
-This case study now includes a sanitized architecture document and a Structured Text source excerpt.
+Includes a sanitized architecture document and Structured Text source excerpt.
 
 See [`twincat/offline-spline-external-setpoint/README.md`](twincat/offline-spline-external-setpoint/README.md).
 
@@ -38,27 +42,30 @@ Closed-loop automation project coupling TwinCAT with Python-based perception and
 
 **Portfolio focus:** Python–PLC coupling, online global plans, local override priority, state-machine coordination, synchronized multi-mover execution and motion tracing.
 
-This case study now includes a sanitized architecture document and Structured Text excerpts for the global-plan handshake and local-override priority logic.
+Includes a sanitized architecture document and Structured Text excerpts for global-plan acceptance and local-override priority logic.
 
 See [`twincat/online-python-vision-motion-planning/README.md`](twincat/online-python-vision-motion-planning/README.md).
 
 ## Engineering themes
 
 - IEC 61131-3 PLC programming and state-machine design
-- Siemens TIA Portal / WinCC and Beckhoff TwinCAT 3
+- Siemens TIA Portal and Beckhoff TwinCAT 3
 - PROFINET, PROFIsafe, IO-Link and ADS communication concepts
-- PID-based pneumatic control
+- sensor-driven process control and diagnostics
+- PID-related pneumatic pressure control
 - robot and gripper integration
 - cyclic setpoint generation and XPlanar motion execution
 - Python–PLC integration and online planning
-- fault handling, synchronization, diagnostics and HMI design
+- fault handling, synchronization and runtime supervision
 
 ## Current publication status
 
-- **TwinCAT offline:** reviewed and sanitized architecture/source excerpt prepared
-- **TwinCAT online:** reviewed and sanitized architecture/source excerpts prepared
-- **TIA pneumatic control:** documentation prepared; selected PLC block export still required
-- **TIA robot cell:** documentation prepared; selected PLC block export still required
+- **TIA pneumatic control:** reviewed; architecture and sanitized selected logic prepared
+- **TIA robot cell:** reviewed; architecture and sanitized selected integration logic prepared
+- **TwinCAT offline:** reviewed; sanitized architecture/source excerpt prepared
+- **TwinCAT online:** reviewed; sanitized architecture/source excerpts prepared
+
+The HMI implementations are part of the original systems but are intentionally not a main portfolio artifact. The public presentation focuses on control logic and system integration.
 
 The native engineering archives are **not** published. The review identified vendor packages, compiled libraries, license files, project databases, target-system/network configuration, raw logs and other generated artifacts that should remain outside a public portfolio.
 
@@ -66,10 +73,12 @@ The native engineering archives are **not** published. The review identified ven
 
 ```text
 tia-portal/
-  README.md
-  EXPORT_SELECTED_BLOCKS.md
   pneumatic-flow-pressure-control/
+    ARCHITECTURE.md
+    SELECTED_LOGIC.md
   robot-cell-profinet-integration/
+    ARCHITECTURE.md
+    SELECTED_LOGIC.md
 
 twincat/
   offline-spline-external-setpoint/
@@ -85,4 +94,4 @@ REVIEW_STATUS.md
 
 ## License
 
-No open-source license is assigned yet. A license will only be selected after the exact source files intended for public release have been reviewed for ownership and redistribution rights.
+No open-source license is assigned. Native vendor projects and third-party libraries are excluded, and the portfolio repository remains under default copyright unless a license is deliberately selected later.
