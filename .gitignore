@@ -1,0 +1,45 @@
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Secrets / local configuration
+.env
+.env.*
+*.key
+*.pem
+*.pfx
+*.p12
+*credential*
+*secret*
+*password*
+
+# Logs / generated artifacts
+*.log
+logs/
+outputs/
+Results/
+
+# Siemens / TwinCAT generated or machine-specific artifacts
+*.bak
+*.tmp
+*.cache
+*.compiled-library
+*.library
+*.tpy
+*.tmc
+*.bootdata
+_Boot/
+_TwinCAT Boot/
+
+# License / activation material
+*license*
+*License*
+*TAN*
+
+# Native project archives stay private until reviewed
+*.ap*
+*.zap*
+*.tsproj.user
+*.sln.user
