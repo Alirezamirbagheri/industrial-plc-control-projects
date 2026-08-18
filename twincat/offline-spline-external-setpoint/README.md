@@ -17,16 +17,16 @@ The project contains PLC logic for:
 - mover initialization, target assignment and distribution
 - XPlanar runtime update / visualization support
 
-The reviewed logic is designed around a **1 ms point-generation cycle**. Instead of sending a complete list of discrete points to the motion system, the PLC reconstructs the path online from the imported spline coefficients and advances through the spline cyclically.
+The reviewed logic is designed around a **1 ms point-generation cycle**. Instead of sending a complete list of discrete points to the motion system, the PLC reconstructs the path from imported spline coefficients and advances through the spline cyclically.
 
 ## Data flow
 
 ```text
 Offline path / smoothing
         ↓
-Parametric spline coefficients (CSV)
+Parametric spline coefficients
         ↓
-TwinCAT CSV import
+TwinCAT import
         ↓
 Spline parameter database
         ↓
@@ -39,18 +39,11 @@ External setpoint generation
 XPlanar mover motion
 ```
 
-## Representative PLC modules
+## Portfolio material
 
-The reviewed project includes modules corresponding to:
-
-- CSV spline-parameter import
-- cyclic spline-point generation
-- mover distribution / target assignment
-- process sequencing
-- initialization and hardware update
-- HMI/visualization support
-
-These module names are documented here as architectural evidence; native project files and compiled Beckhoff libraries are not copied into the portfolio repository.
+- [`ARCHITECTURE.md`](ARCHITECTURE.md) — architecture and runtime sequence
+- [`source-excerpts/cyclic_spline_generation.st`](source-excerpts/cyclic_spline_generation.st) — sanitized Structured Text excerpt showing cyclic cubic-spline evaluation
+- [`source-excerpts/README.md`](source-excerpts/README.md) — source-excerpt scope and limitations
 
 ## Engineering relevance
 
@@ -58,6 +51,6 @@ This case study demonstrates the PLC side of trajectory execution: converting co
 
 ## Public-release scope
 
-The original TwinCAT workspace contains compiled/vendor libraries, TwinSAFE material, license files, generated build/configuration artifacts and machine-specific project data. Those remain excluded. Selected author-created ST logic may be added later only after redistribution rights are confirmed.
+The original TwinCAT workspace contains compiled/vendor libraries, TwinSAFE material, license files, generated build/configuration artifacts and machine-specific project data. Those remain excluded. The source excerpt in this repository is intentionally reduced to the author-created algorithmic concept and is not a standalone TwinCAT project.
 
-> Status: **source archive reviewed; documentation ready; public source extraction intentionally pending**.
+> Status: **archive reviewed; sanitized architecture and source excerpt prepared**.
