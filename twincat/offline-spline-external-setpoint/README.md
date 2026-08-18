@@ -1,23 +1,63 @@
-# Offline Spline External Setpoint Generation
+# Offline Spline External Setpoint Generation — TwinCAT 3
 
-TwinCAT 3 motion-control case study for executing precomputed spline trajectories through cyclic external setpoint generation.
+## Objective
 
-## Control concept
+Execute precomputed multi-mover trajectories in TwinCAT by importing parametric spline data and generating the next motion point cyclically inside the PLC.
 
-Trajectory geometry is generated offline and represented by spline parameters. Those parameters are imported into the TwinCAT project before execution. At runtime, the PLC evaluates the active spline segment and computes the next trajectory point on every control cycle. The resulting cyclic position setpoints are then used to move the system along the precomputed path.
+## Reviewed implementation
 
-## Engineering focus
+The project contains PLC logic for:
 
-- import of precomputed spline coefficients / trajectory parameters
-- cyclic evaluation of spline segments
-- control-cycle-based point generation
-- external setpoint generation
-- trajectory progress and segment transitions
-- mover motion execution
-- timing, bounds and runtime supervision
+- reading parametric spline data from CSV
+- storing spline coefficients and segment metadata
+- tracking the active segment for each mover
+- evaluating cubic X/Y spline polynomials during runtime
+- allocating cyclic interpolation points according to segment timing
+- generating a new setpoint on each PLC task cycle
+- mover initialization, target assignment and distribution
+- XPlanar runtime update / visualization support
 
-## Portfolio release
+The reviewed logic is designed around a **1 ms point-generation cycle**. Instead of sending a complete list of discrete points to the motion system, the PLC reconstructs the path online from the imported spline coefficients and advances through the spline cyclically.
 
-The public version will contain only sanitized logic and documentation that can be redistributed safely. Native TwinCAT project files, vendor libraries, compiled artifacts, licenses, certificates and machine-specific configuration are not included by default.
+## Data flow
 
-> Status: **private staging area — source extraction and review pending**.
+```text
+Offline path / smoothing
+        ↓
+Parametric spline coefficients (CSV)
+        ↓
+TwinCAT CSV import
+        ↓
+Spline parameter database
+        ↓
+Cyclic spline evaluation in PLC
+        ↓
+Next X/Y setpoint every PLC cycle
+        ↓
+External setpoint generation
+        ↓
+XPlanar mover motion
+```
+
+## Representative PLC modules
+
+The reviewed project includes modules corresponding to:
+
+- CSV spline-parameter import
+- cyclic spline-point generation
+- mover distribution / target assignment
+- process sequencing
+- initialization and hardware update
+- HMI/visualization support
+
+These module names are documented here as architectural evidence; native project files and compiled Beckhoff libraries are not copied into the portfolio repository.
+
+## Engineering relevance
+
+This case study demonstrates the PLC side of trajectory execution: converting compact mathematical path data into deterministic control-cycle setpoints suitable for industrial motion execution.
+
+## Public-release scope
+
+The original TwinCAT workspace contains compiled/vendor libraries, TwinSAFE material, license files, generated build/configuration artifacts and machine-specific project data. Those remain excluded. Selected author-created ST logic may be added later only after redistribution rights are confirmed.
+
+> Status: **source archive reviewed; documentation ready; public source extraction intentionally pending**.
